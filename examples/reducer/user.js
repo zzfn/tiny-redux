@@ -1,17 +1,17 @@
-function InfoReducer(state, action) {
-    switch (action.type) {
-        case 'SET_NAME':
+function userReducer(state, {type,payload}) {
+    switch (type) {
+        case 'user/name':
             return {
                 ...state,
-                name: action.name
+                name: payload
             }
-        case 'SET_DESCRIPTION':
+        case 'user/age':
             return {
                 ...state,
-                description: action.description
+                age: payload
             }
         default:
             return state;
     }
 }
-export default InfoReducer
+module.exports= userReducer

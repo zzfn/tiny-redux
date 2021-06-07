@@ -1,12 +1,13 @@
-import r1 from '../examples/reducer/menu'
-import r2 from '../examples/reducer/user'
-
 function combineReducers(reducers) {
+    console.log(reducers)
     const reducersKeys = Object.keys(reducers)
-    console.log(reducersKeys)
+    return function (state, action) {
+        const nextState = {}
+        for (let [name, reducer] of Object.entries(reducers)) {
+            nextState[name] = reducer(state[name], action)
+        }
+        return nextState;
+    }
 }
 
-combineReducers({
-    user: r1,
-    menu: r2
-})
+module.exports = combineReducers

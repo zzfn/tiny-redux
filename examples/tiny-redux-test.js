@@ -1,19 +1,20 @@
-const redux=require('../src/tiny-redux')
-const {createStore,applyMiddleware}=redux
-function counterReducer(state = { value: 0 }, action) {
-    switch (action.type) {
-        case 'counter/incremented':
-            return { value: state.value + 1 }
-        case 'counter/decremented':
-            return { value: state.value - 1 }
-        default:
-            return state
-    }
-}
-let store = createStore(counterReducer, {value:0})
-console.log(store)
-store.subscribe((r)=>{
-    console.log(r)
+const redux = require('../src/tiny-redux')
+const counter = require('./reducer/counter')
+const user = require('./reducer/user')
+const loggerMiddleware = require('./loggerMiddleware')
+const timeMiddleware = require('./timeMiddleware')
+const {createStore, applyMiddleware, combineReducers} = redux
+const middlewares = applyMiddleware(timeMiddleware, loggerMiddleware)
+let store = createStore(combineReducers({counter, user}), {user: {name: 'aa'}}, middlewares)
+const next = store.dispatch;
+console.log(next)
+console.log(store.getState())
+store.subscribe(() => {
     console.log(store.getState())
 })
-store.dispatch({...store.getState(),info:{age:2}})
+store.dispatch({type: 'user/name', payload: '222'})
+store.dispatch({type: 'counter/incremented'})
+store.dispatch({type: 'counter/incremented'})
+store.dispatch({type: 'counter/decremented'})
+store.dispatch({type: 'user/name', payload: '333'})
+
