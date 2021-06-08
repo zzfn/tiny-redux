@@ -15,9 +15,7 @@ function createStore(reducer, initState, enhancer) {
 
     function dispatch(action) {
         state = reducer(state, action)
-        for (let n of listeners) {
-            n()
-        }
+        listeners.forEach(listener => listener())
     }
 
     function getState() {
