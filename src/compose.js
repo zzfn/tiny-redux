@@ -15,4 +15,4 @@ function ff(num) {
 }
 
 console.log(plus(ss((ff(2)))))
-console.log(compose(plus,ss,ff))
+console.log(compose(plus,ss,ff)(2))
