@@ -15,12 +15,12 @@ store.subscribe(() => {
 })
 store.dispatch(function (dispatch) {
     setTimeout(() => {
-        store.dispatch({type: 'user/name', payload: '444'})
+        dispatch({type: 'user/name', payload: '444'})
     }, 1000)
 })
-store.dispatch({type: 'user/name', payload: '222'})
-store.dispatch({type: 'counter/incremented'})
-store.dispatch({type: 'counter/incremented'})
-store.dispatch({type: 'counter/decremented'})
-store.dispatch({type: 'user/name', payload: '333'})
+// store.dispatch({type: 'user/name', payload: '222'})
+// store.dispatch({type: 'counter/incremented'})
+// store.dispatch({type: 'counter/incremented'})
+// store.dispatch({type: 'counter/decremented'})
+// store.dispatch({type: 'user/name', payload: '333'})
 

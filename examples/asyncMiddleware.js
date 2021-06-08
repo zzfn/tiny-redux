@@ -1,6 +1,7 @@
-const asyncMiddleware = (store) => (next) => (action)  => {
+const asyncMiddleware = ({dispatch,getState}) => (next) => (action)  => {
+    console.log('async=>',action.type)
     if(typeof action==='function'){
-        return action(store.dispatch,store.getState)
+        return action(dispatch,getState)
     }
     next(action)
 }

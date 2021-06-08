@@ -1,5 +1,6 @@
 const loggerMiddleware = (store) => (next) => (action)  => {
-    console.log('post=>',action.type)
+    console.log(`loggerMiddleware before next action `)
     next(action)
+    console.log(`loggerMiddleware after next action `)
 }
 module.exports=loggerMiddleware

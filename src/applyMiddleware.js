@@ -1,8 +1,8 @@
 function applyMiddleware(...middlewares) {
     return function (oldCreateStore) {
-        return function (reducer,initState) {
-            const store=oldCreateStore(reducer,initState)
-           const chain=middlewares.map(middleware=>middleware(store))
+        return function (reducer, initState) {
+            const store = oldCreateStore(reducer, initState)
+            const chain = middlewares.map(middleware => middleware(store))
             // let dispatch=store.dispatch
             // chain.reverse().map(middleware => {
             //     dispatch = middleware(dispatch);
@@ -13,6 +13,7 @@ function applyMiddleware(...middlewares) {
         }
     }
 }
+
 function compose(...args) {
     if (args.length === 1) {
         return args[0]
@@ -20,4 +21,4 @@ function compose(...args) {
     return args.reduce((a, b) => (...args) => a(b(...args)))
 }
 
-module.exports=applyMiddleware
+module.exports = applyMiddleware
